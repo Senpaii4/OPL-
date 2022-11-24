@@ -1,0 +1,330 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/ui-libraries/main/drawing/void/source.lua"))()
+
+local main = library:Load{
+    Name = "Laby Lua - One Piece Legendary",
+    SizeX = 400,
+    SizeY = 450,
+    Theme = "Midnight",
+    Extension = "json", -- config file extension
+    Folder = "LabyLua" -- config folder name
+}
+
+local tab = main:Tab("Game")
+
+local tab2 = main:Tab("Misc")
+
+
+
+local section = tab:Section{
+    Name = "Teleport",
+    Side = "Left"
+}
+
+local sectionB = tab:Section{
+    Name = "Buy Drink",
+    Side = "Right"
+}
+
+local sectionGame = tab:Section{
+    Name = "Game Stuff",
+    Side = "Left"
+}
+
+local sectionAutoFarm = tab:Section{
+    Name = "Auto Farm",
+    Side = "Right"
+}
+
+local sectionFRUT = tab:Section{
+    Name = "Fruit Change",
+    Side = "Right"
+}
+
+local section1 = tab2:Section{
+    Name = "Character Stuff",
+    Side = "Left"
+}
+
+local section2 = tab2:Section{
+    Name = "Destroy Gui",
+    Side = "Right"
+}
+
+local label = section1:Label("Choose")
+
+section2:Button{
+    Name = "Destroy UI",
+    Callback  = function()
+        library:Unload()
+    end
+}
+
+section1:Button{
+    Name = "Walkspeed",
+    Callback  = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/KSvGhSaf"))()
+    end
+}
+
+local slider = section1:Slider{
+    Name = "Jump Height",
+    Text = "[value]/500",
+    Min = 50,
+    Max = 500,
+    Float = 1,
+    Flag = "Slider 1",
+    Callback = function(value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+    end
+}
+
+local FOVSlider = section1:Slider{
+    Name = "FOV",
+    Text = "[value]/250",
+    Min = 70,
+    Max = 120,
+    Float = 1,
+    Flag = "FOV2",
+    Callback = function(value)
+        game.Workspace.Camera.FieldOfView = value
+    end
+}
+
+local CamSlider = section1:Slider{
+    Name = "Cam Zoom",
+    Text = "[value]/3500",
+    Min = 80,
+    Max = 3500,
+    Float = 1,
+    Flag = "CamZoom2",
+    Callback = function(value)
+        game.Players.LocalPlayer.CameraMaxZoomDistance = value
+    end
+}
+
+section1:Button{
+    Name = "ESP",
+    Callback  = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/x0nE1nfg"))()
+    end
+}
+
+local TeleportSelected;
+
+local Teleport = section:Dropdown{
+    Name = "Select Teleport Location",
+    Content = {
+        "Starter",
+        "Sand",
+        "Purple",
+        "SandCastle",
+        "Mountain",
+        "Snow",
+        "Bar",
+        "Disco",
+        "Snow Cliffs",
+        "Cliffs",
+        "Altar",
+        "Krizma"
+    },
+    Flag = "Dropdow2",
+    Callback = function(option)
+    TeleportSelected = option
+    end
+}
+
+section:Button{
+    Name = "Teleport",
+    Callback  = function()
+        if TeleportSelected == "Starter" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").IslandWindmill.Base.GrassWedge.CFrame + Vector3.new (0,8,0)
+        elseif TeleportSelected == "Sand" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Trees.Cactus.Tree.Cactus.CFrame + Vector3.new (0,8,0)
+        elseif TeleportSelected == "SandCastle" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").IslandSandCastle.Stall.Sword4.CFrame + Vector3.new (0,8,0)
+         elseif TeleportSelected == "Purple" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Trees.CorrodedTree.Model.Part.CFrame + Vector3.new (0,8,0)
+        elseif TeleportSelected == "Mountain" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Trees.JungleTree.Tree.Union.CFrame + Vector3.new (0,8,0)
+        game:GetService("Workspace").Trees.JungleTree.Tree.Union.CanCollide = false
+        elseif TeleportSelected == "Snow" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Trees.SnowyTree.Model.Part.CFrame + Vector3.new (0,8,0)
+        elseif TeleportSelected == "Bar" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").IslandPirate.Station.Seats.Station.Stool.Chair.Wall.CFrame + Vector3.new (0,8,0)
+        elseif TeleportSelected == "Disco" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Island13.ButtonColor.CFrame + Vector3.new (0,8,0)
+        elseif TeleportSelected == "Snow Cliffs" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Trees.SnowyMountainsTree.Model.Leaves.CFrame + Vector3.new (0,8,0)
+        elseif TeleportSelected == "Cliffs" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Trees.VokunTree.Tree.Union.CFrame + Vector3.new (0,8,0)
+        elseif TeleportSelected == "Altar" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Altar.Ring.CFrame + Vector3.new (0,8,0)
+        elseif TeleportSelected == "Krizma" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Merchants.KrizmaMerch.Clickable.CFrame + Vector3.new (0,8,0)
+        end
+    end
+}
+
+local DRINK;
+
+local BuyDrink = sectionB:Dropdown{
+    Name = "Select Drink",
+    Content = {
+        "Cider+",
+        "Smoothie+",
+        "Lemonade+",
+        "Juice+",
+        "Juice",
+        "Lemonade",
+        "Smoothie",
+        "Cider"
+    },
+    Flag = "Dropdow2",
+    Callback = function(option)
+    DRINK = option
+    end
+}
+
+sectionB:Button{
+    Name = "Buy",
+    Callback  = function()
+        local args = {
+            [1] = DRINK
+        }
+        workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer(unpack(args))
+        workspace.Merchants.DrinkMerchant.Clickable.Retum:FireServer(unpack(args))    end
+}
+
+
+sectionGame:Button{
+    Name = "Safe Place",
+    Callback  = function()
+        local part = Instance.new("Part")
+        local PartPosition = Vector3.new(math.random(-100000,150000),10000,math.random(-100000,150000))
+        local PartName = (math.random(24689,2349869))
+        part.Anchored = true
+        part.Position = PartPosition
+          part.Size = Vector3.new(60 ,1, 60)
+          part.Parent = workspace
+        part.Name = PartName
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = part.CFrame + Vector3.new (0,8,0)
+        end
+}
+
+
+sectionGame:Button{
+    Name = "Bring all Chest",
+    Callback  = function()
+        for i,v in pairs(game:GetDescendants()) do
+            if  v.Name == ("TreasureChestPart") then
+                print("CHEST")
+                v.CanCollide = false
+                v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
+            end
+        end
+        end
+}
+
+sectionGame:Button{
+    Name = "No Water Damage",
+    Callback  = function()
+        local mt = getrawmetatable(game)
+        make_writeable(mt)
+        local namecall = mt.__namecall
+        mt.__namecall = newcclosure(function(self, ...)
+            local method = getnamecallmethod()
+            local args = {...}
+            if method == "FireServer" and tostring(self) == "Drown" then
+               return
+            end
+            return namecall(self, table.unpack(args))
+        end)
+        end
+}
+
+sectionGame:Button{
+    Name = "Bring all Devil fruits",
+    Callback  = function()
+        for i,v in pairs(workspace:GetDescendants()) do
+            if v:IsA("ClickDetector") and v.Parent.Name == "Main" then
+            fireclickdetector(v)
+            end
+        end
+        end
+}
+
+sectionGame:Button{
+    Name = "Bring all Enemies",
+    Callback  = function()
+        for i,v in pairs(workspace:GetDescendants()) do
+            if v.Name == "HumanoidRootPart" and v.Parent.Parent.Name == "Enemies" then
+            v.Anchored = false
+            v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(7,0,0)
+                end
+            end
+        end
+}
+local BARAURA;
+
+local toggle = sectionAutoFarm:Toggle{
+    Name = "Barrel Aura",
+    Flag = "Toggle 1",
+    Callback  = function(bool)
+        if bool then
+            BARAURA = bool
+            print(bool)
+        else
+            BARAURA = bool
+            print(bool)
+        end    
+    end
+}
+
+sectionAutoFarm:Button{
+    Name = "Stats farm",
+    Callback  = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/heL8sPhS"))()
+    end
+}
+
+
+local Fruit = "Phoenix"
+
+local Fruits = sectionFRUT:Dropdown{
+    Name = "Select DF",
+    Content = {
+        "Phoenix",
+        "Gum",
+        "Light",
+        "Rumble",
+        "Candy",
+        "Snow",
+    },
+    Flag = "Drow2",
+    Callback = function(option)
+    Fruit = option
+    end
+}
+
+sectionFRUT:Button{
+    Name = "Change DF - Temporary",
+    Callback  = function()
+        local plrID = game.Players.LocalPlayer.UserId
+        game:GetService("Workspace").UserData["User_"..plrID].Data.DevilFruit.Value = Fruit
+        game.Players.LocalPlayer.Character.Humanoid.Health = -1
+        end
+}
+
+
+while true do
+    wait()
+    if BARAURA == true then
+    local Bakery = game:GetService("Workspace").Barrels;
+    wait(0.5)
+      for _, ClickDetector in pairs(Bakery:GetDescendants()) do
+      if (ClickDetector:IsA("ClickDetector")) then
+      fireclickdetector(ClickDetector)
+    end
+end
+end;
+end;
